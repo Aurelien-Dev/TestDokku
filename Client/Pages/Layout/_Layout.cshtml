@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@namespace Client.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="~/" />
+    @*<link href="~/css/styles.min.css" rel="stylesheet" />*@
+    <title>Ceram-Workshop</title>
+    <link href="~/Client.styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+</head>
+<body class="nav-fixed">
+
+    @RenderBody()
+
+    <script src="js/cookies.js"></script>
+    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+
+    @*<script src="js/scripts.js"></script>*@
+    <script src="_framework/blazor.server.js"></script>
+
+</body>
+</html>

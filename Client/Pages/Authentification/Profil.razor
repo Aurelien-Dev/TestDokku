@@ -1,0 +1,59 @@
+﻿@page "/profil"
+@using Client.Components
+@using Client.Utils
+@using Microsoft.AspNetCore.Localization
+
+@inherits CustomLayoutComponentBase
+
+<MudContainer Class="mt-5" MaxWidth="MaxWidth.Medium">
+
+    <MudCard>
+        <MudCardHeader>
+            <MudText Typo="Typo.h6">@Localizer["TitleProfil_EditInfo"]</MudText>
+        </MudCardHeader>
+
+        <MudCardContent>
+            <MudStack Spacing=5>
+                <MudForm @ref="formGeneral">
+                    <MudStack Spacing=5>
+                        <MudTextField InputType="InputType.Text" Label="@Localizer["WorkshopName"]" FullWidth=true
+                                      @bind-Value="registerInfo.Name" For="@(() => registerInfo.Name)" />
+
+                        <MudTextField InputType="InputType.Text" Label="@Localizer["WorkshopUserName"]" FullWidth=true
+                                      @bind-Value="registerInfo.UserName" For="@(() => registerInfo.UserName)" />
+
+                        <MudTextField InputType="InputType.Email" Label="@Localizer["WorkshopEmail"]" FullWidth=true
+                                      @bind-Value="registerInfo.Email" For="@(() => registerInfo.Email)" />
+                        <MudSelect T="RequestCulture" Label="@Localizer["WorkshopLanguage"]" AnchorOrigin="Origin.BottomCenter"
+                                   @bind-Value="registerInfo.Culture" ToStringFunc="@(p=>p?.Culture.DisplayName)" >
+                            <MudSelectItem T="RequestCulture" Value="@(new RequestCulture("fr"))" />
+                            <MudSelectItem T="RequestCulture" Value="@(new RequestCulture("en"))" />
+                        </MudSelect>
+
+                        <MudButton ButtonType="ButtonType.Button" Variant="Variant.Filled" Color="Color.Primary" OnClick="EditProfile">@Localizer["Btn_Save"]</MudButton>
+                    </MudStack>
+                </MudForm>
+
+
+                <MudText Class="mt-10" Typo="Typo.h6">@Localizer["TitleProfil_ResetPwd"]</MudText>
+
+                <MudForm>
+                    <MudStack Spacing=5>
+
+                        <MudTextField InputType="InputType.Password" Label="@Localizer["WorkshopPassword"]" FullWidth=true
+                                      @bind-Value="registerInfo.Password" For="@(() => registerInfo.Password)" />
+
+                        <MudTextField InputType="InputType.Password" Label="@Localizer["WorkshopPassword"]" FullWidth=true
+                                      @bind-Value="registerInfo.Password2" For="@(() => registerInfo.Password2)" />
+
+                        <MudText Color="@Color.Error">@registerError</MudText>
+
+                        <MudButton ButtonType="ButtonType.Button" Variant="Variant.Filled" Color="Color.Primary">@Localizer["Btn_SavePassword"]</MudButton>
+                    </MudStack>
+                </MudForm>
+            </MudStack>
+
+        </MudCardContent>
+    </MudCard>
+
+</MudContainer>

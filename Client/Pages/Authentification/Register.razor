@@ -1,0 +1,33 @@
+﻿@page "/register"
+@using Client.Components
+@using Client.Utils
+@layout LayoutLogin
+@inherits CustomLayoutComponentBase
+
+<MudForm @ref="form" @bind-IsValid="@success">
+    <MudStack Spacing=5>
+        <MudTextField InputType="InputType.Text" Label="@Localizer["WorkshopName"]" FullWidth=true
+                      @bind-Value="registerInfo.Name" For="@(() => registerInfo.Name)" />
+
+        <MudTextField InputType="InputType.Text" Label="@Localizer["WorkshopUserName"]" FullWidth=true
+                      @bind-Value="registerInfo.UserName" For="@(() => registerInfo.UserName)" />
+
+        <MudTextField InputType="InputType.Email" Label="@Localizer["WorkshopEmail"]" FullWidth=true
+                      @bind-Value="registerInfo.Email" For="@(() => registerInfo.Email)" />
+
+        <MudTextField InputType="InputType.Password" Label="@Localizer["WorkshopPassword"]" FullWidth=true
+                      @bind-Value="registerInfo.Password" For="@(() => registerInfo.Password)" />
+
+        <MudTextField InputType="InputType.Password" Label="@Localizer["WorkshopPassword"]" FullWidth=true
+                      @bind-Value="registerInfo.Password2" For="@(() => registerInfo.Password2)" />
+
+        <MudText Color="@Color.Error">@registerError</MudText>
+
+        <MudButton ButtonType="ButtonType.Button" Variant="Variant.Filled" Color="Color.Primary" OnClick="@(async () => { await RegisterWorkshop(); RegisterInProgress = false; })">@Localizer["Btn_CreateWorkshop"]</MudButton>
+
+        @if (RegisterInProgress)
+        {
+            <MudProgressLinear Color=" Color.Primary" Indeterminate="true" Class="my-7" />
+        }
+    </MudStack>
+</MudForm>

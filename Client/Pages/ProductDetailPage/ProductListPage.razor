@@ -1,0 +1,46 @@
+﻿@page "/"
+@using Client.Components
+@using Client.Utils
+@inherits CustomComponentBase
+
+<MudPaper Elevation="0">
+    <MudToolBar Dense=true Class="mt-4" DisableGutters=true>
+        <MudSelect T="OrderingPage" Label=@Localizer["OrderBy"] Margin="Margin.Dense" ValueChanged="@((e) => RaiseOrdering(e))"
+                   MultiSelection=false>
+            @foreach (OrderingPage item in Enum.GetValues(typeof(OrderingPage)))
+            {
+                <MudSelectItem Value="@item">@item</MudSelectItem>
+            }
+        </MudSelect>
+
+        <MudSpacer />
+
+        <MudTextField ValueChanged="@((e) => RaisFilter(e))" T=string
+                      Clearable=true KeyUpPreventDefault=true Label="@Localizer["Search"]" Variant="Variant.Outlined" Adornment="Adornment.End" Margin="Margin.Dense"
+                      AdornmentIcon="@Icons.Filled.Search" AdornmentColor="Color.Secondary" />
+    </MudToolBar>
+</MudPaper>
+<MudGrid Class="mt-2">
+    @foreach (var item in ProductsVM)
+    {
+        <MudItem xs="12" md="4" lg="2">
+            <MudCard>
+                <MudCardHeader Class="pa-0">
+                    <MudImage Src="@item.Image" Class="rounded-t" ObjectPosition=ObjectPosition.Center ObjectFit=ObjectFit.Cover Style="width:100%;" Height=200
+                          Alt="@Localizer["ProductList_AltImgProduct"]" />
+                </MudCardHeader>
+                <MudCardContent Style="height:100px;">
+                    <MudText Typo="Typo.h6" Class="pa-0 ma-0" Inline=true>@item.Name</MudText>
+                    <MudText Typo="Typo.body2" Class="pa-0 ma-0" Inline=true>#@item.Reference</MudText>
+
+                    <ProductStatusChip Status=@item.Status />
+                </MudCardContent>
+                <MudCardActions>
+                    <MudStack AlignItems="AlignItems.End" Justify="Justify.FlexEnd">
+                        <MudButton Variant="Variant.Text" Color="Color.Primary" Href="@($"Product/{item.Id}")">@Localizer["ProductList_ShowProduct"]</MudButton>
+                    </MudStack>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    }
+</MudGrid>

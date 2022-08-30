@@ -1,0 +1,10 @@
+﻿@using Client.Utils
+@inherits CustomComponentBase
+
+<MudNavMenu>
+    <MudNavLink Href="/" Match="NavLinkMatch.All">Mes produits</MudNavLink>
+    <MudNavGroup Title="Mon inventaire" Expanded="true">
+        <MudNavLink Href="/Clays" Match="NavLinkMatch.All">Argiles</MudNavLink>
+        <MudNavLink Href="/Glaze" Match="NavLinkMatch.All">Émaux</MudNavLink>
+    </MudNavGroup>
+</MudNavMenu>

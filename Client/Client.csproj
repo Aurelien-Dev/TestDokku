@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Shared\Controls\**" />
+		<Compile Remove="wwwroot\css\bootstrap-icons\**" />
+		<Content Remove="Shared\Controls\**" />
+		<Content Remove="wwwroot\css\bootstrap-icons\**" />
+		<EmbeddedResource Remove="Shared\Controls\**" />
+		<EmbeddedResource Remove="wwwroot\css\bootstrap-icons\**" />
+		<None Remove="Shared\Controls\**" />
+		<None Remove="wwwroot\css\bootstrap-icons\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="compilerconfig.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="compilerconfig.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ExternalServices\ExternalServices.csproj" />
+		<ProjectReference Include="..\Repository\Repository.csproj" />
+		<ProjectReference Include="..\Utils\Utils.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="wwwroot\ProductImages\" />
+		<Folder Include="wwwroot\ProductImages\AtelierCremazie\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MudBlazor" Version="6.0.10" />
+	</ItemGroup>
+
+</Project>
